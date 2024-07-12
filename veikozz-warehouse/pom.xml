@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.cassell.veikozz</groupId>
+    <artifactId>veikozz</artifactId>
+    <version>${revision}</version>
+  </parent>
+
+  <name>Veikozz : Warehouse</name>
+
+  <artifactId>veikozz-warehouse</artifactId>
+  <packaging>jar</packaging>
+
+  <properties>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <common.version>1.0</common.version>
+    <iotdb-session.version>0.13.3</iotdb-session.version>
+    <influxdb.version>2.23</influxdb.version>
+    <spring-cloud-starter-openfeign.version>3.0.5</spring-cloud-starter-openfeign.version>
+    <taos-jdbcdriver.version>3.0.0</taos-jdbcdriver.version>
+    <greptimedb.version>0.7.3</greptimedb.version>
+    <mysql-jdbcdriver.version>8.0.33</mysql-jdbcdriver.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.cassell.veikozz</groupId>
+        <artifactId>veikozz-bom</artifactId>
+        <version>${revision}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <!-- util -->
+    <dependency>
+      <groupId>commons-net</groupId>
+      <artifactId>commons-net</artifactId>
+    </dependency>
+    <!-- spring -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-autoconfigure</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-configuration-processor</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <!-- taos-jdbc driver -->
+<!--    <dependency>-->
+<!--      <groupId>com.taosdata.jdbc</groupId>-->
+<!--      <artifactId>taos-jdbcdriver</artifactId>-->
+<!--      <version>${taos-jdbcdriver.version}</version>-->
+<!--    </dependency>-->
+    <!-- IoTDB -->
+    <dependency>
+      <groupId>org.apache.iotdb</groupId>
+      <artifactId>iotdb-session</artifactId>
+      <version>${iotdb-session.version}</version>
+    </dependency>
+    <!-- influxdb Here, support for version 1.7, use influxdb-java, Full support for version 2.x requires influxdb-client-java -->
+    <dependency>
+      <groupId>org.influxdb</groupId>
+      <artifactId>influxdb-java</artifactId>
+      <version>${influxdb.version}</version>
+    </dependency>
+    <!-- greptimedb -->
+    <dependency>
+      <groupId>io.greptime</groupId>
+      <artifactId>ingester-all</artifactId>
+      <version>${greptimedb.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>io.grpc</groupId>
+          <artifactId>grpc-all</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.google.code.gson</groupId>
+          <artifactId>gson</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.google.guava</groupId>
+          <artifactId>guava</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.google.protobuf</groupId>
+          <artifactId>protobuf-java</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <!-- mysql -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>${mysql-jdbcdriver.version}</version>
+    </dependency>
+    <!-- kafka -->
+    <dependency>
+      <groupId>org.apache.kafka</groupId>
+      <artifactId>kafka-clients</artifactId>
+    </dependency>
+    <!--redis-->
+    <dependency>
+      <groupId>io.lettuce</groupId>
+      <artifactId>lettuce-core</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <!-- swagger -->
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+</project>
