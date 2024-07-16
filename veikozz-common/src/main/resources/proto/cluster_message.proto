@@ -1,0 +1,35 @@
+syntax="proto3";
+package org.cassell.veikozz.common.entity.message;
+
+message Message {
+  string collectorId = 1;   // collector id for identifying metrics source
+  Direction direction = 2;
+  MessageType type = 3;     // message type
+  string content = 4;       // concrete message content
+}
+
+enum Direction {
+  REQUEST = 0;
+  RESPONSE = 1;
+}
+
+enum MessageType {
+  // heartbeat message
+  HEARTBEAT = 0;
+  // collector go online to master message
+  GO_ONLINE = 1;
+  // collector go offline to master message
+  GO_OFFLINE = 2;
+  // issue cyclic collect task
+  ISSUE_CYCLIC_TASK = 3;
+  // delete cyclic collect task
+  DELETE_CYCLIC_TASK = 4;
+  // issue one-time collect task
+  ISSUE_ONE_TIME_TASK = 5;
+  // response one-time collect data
+  RESPONSE_ONE_TIME_TASK_DATA = 6;
+  // response cyclic collect data
+  RESPONSE_CYCLIC_TASK_DATA = 7;
+  // collector go close to master
+  GO_CLOSE = 8;
+}

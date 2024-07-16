@@ -1,0 +1,6 @@
+syntax="proto3";
+package org.cassell.veikozz.common.entity;
+
+message Metrics {
+
+}
